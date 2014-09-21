@@ -19,6 +19,7 @@ class ToyRob
 
   def place(board)
     @board = board
+    @pose = Pose.new if !placed?
   end
 
   def placed?

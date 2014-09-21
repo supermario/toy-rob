@@ -14,6 +14,8 @@ class Pose < Struct.new(:x, :y, :direction)
       Pose.new(x, y - 1, direction)
     when EAST
       Pose.new(x + 1, y, direction)
+    else
+      Pose.new
     end
   end
 
@@ -27,6 +29,8 @@ class Pose < Struct.new(:x, :y, :direction)
       Pose.new(x, y, EAST)
     when EAST
       Pose.new(x, y, NORTH)
+    else
+      Pose.new
     end
   end
 
@@ -40,6 +44,8 @@ class Pose < Struct.new(:x, :y, :direction)
       Pose.new(x, y, WEST)
     when WEST
       Pose.new(x, y, NORTH)
+    else
+      Pose.new
     end
   end
 end

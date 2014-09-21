@@ -32,4 +32,5 @@ end
 
 step 'toy-rob should not be on the board' do
   expect(@toyrob.placed?).to be(false)
+  expect(@toyrob.pose).to eq(Pose.new)
 end

@@ -49,3 +49,11 @@ Feature: Movement
     And a toy-rob outside of the space-time continuum
     Then toy-rob should not be on the board
 
+  Scenario: Movements before placement
+    Given a board of width 5 and height 5
+    And a toy-rob outside of the space-time continuum
+    When toy-rob moves
+    And toy-rob turns right
+    And toy-rob turns left
+    Then toy-rob should not be on the board
+
