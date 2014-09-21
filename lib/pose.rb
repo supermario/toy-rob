@@ -3,6 +3,7 @@ class Pose < Struct.new(:x, :y, :direction)
   SOUTH = 'south'
   EAST = 'east'
   WEST = 'west'
+  DIRECTIONS = [NORTH, EAST, SOUTH, WEST]
 
   def next
     case direction
@@ -20,32 +21,21 @@ class Pose < Struct.new(:x, :y, :direction)
   end
 
   def rotate_left
-    case direction
-    when NORTH
-      Pose.new(x, y, WEST)
-    when WEST
-      Pose.new(x, y, SOUTH)
-    when SOUTH
-      Pose.new(x, y, EAST)
-    when EAST
-      Pose.new(x, y, NORTH)
-    else
-      Pose.new
-    end
+    rotate(-1)
   end
 
   def rotate_right
-    case direction
-    when NORTH
-      Pose.new(x, y, EAST)
-    when EAST
-      Pose.new(x, y, SOUTH)
-    when SOUTH
-      Pose.new(x, y, WEST)
-    when WEST
-      Pose.new(x, y, NORTH)
-    else
-      Pose.new
-    end
+    rotate(1)
+  end
+
+  private
+
+  def dir_pos
+    DIRECTIONS.index(direction)
+  end
+
+  def rotate(dir)
+    return Pose.new if direction.nil?
+    Pose.new(x, y, DIRECTIONS.rotate(dir_pos + dir).first)
   end
 end

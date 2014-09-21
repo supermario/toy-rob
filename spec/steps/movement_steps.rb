@@ -9,7 +9,7 @@ step 'a toy-rob at coords :x,:y facing :direction' do |x, y, direction|
 end
 
 step 'a toy-rob outside of the space-time continuum' do
-  @toyrob = ToyRob.new()
+  @toyrob = ToyRob.new
 end
 
 step 'toy-rob moves' do

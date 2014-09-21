@@ -19,11 +19,11 @@ class ToyRob
 
   def place(board)
     @board = board
-    @pose = Pose.new if !placed?
+    @pose = Pose.new unless placed?
   end
 
   def placed?
     return false if board.nil?
-    return board.contains(pose.x, pose.y)
+    board.contains(pose.x, pose.y)
   end
 end

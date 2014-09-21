@@ -57,7 +57,7 @@ describe ToyRob do
     end
 
     it 'is false when toy-rob has no pose' do
-      toyrob = ToyRob.new()
+      toyrob = ToyRob.new
       board = Board.new(5, 5)
       toyrob.place(board)
 
