@@ -10,7 +10,7 @@ describe ToyRob do
 
   describe '#rotate_right' do
     it 'turns toy-rob to the right' do
-      pose = stub(:pose)
+      pose = double(:pose)
       toyrob = ToyRob.new(pose)
 
       expect(toyrob.pose).to receive(:rotate_right)
@@ -21,7 +21,7 @@ describe ToyRob do
 
   describe '#rotate_left' do
     it 'turns toy-rob to the left' do
-      pose = stub(:pose)
+      pose = double(:pose)
       toyrob = ToyRob.new(pose)
 
       expect(toyrob.pose).to receive(:rotate_left)
