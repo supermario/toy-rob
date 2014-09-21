@@ -12,11 +12,11 @@ step 'toy-rob moves' do
 end
 
 step 'toy-rob turns right' do
-  @toyrob.turn_right
+  @toyrob.rotate_right
 end
 
 step 'toy-rob turns left' do
-  @toyrob.turn_left
+  @toyrob.rotate_left
 end
 
 step 'he should be at :x,:y facing :direction' do |x, y, direction|

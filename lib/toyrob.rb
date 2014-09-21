@@ -9,13 +9,11 @@ class ToyRob
     @pose = pose.next
   end
 
-  def turn_right
+  def rotate_right
+    @pose = pose.rotate_right
   end
 
-  def turn_left
-  end
-
-  def pose
-    @pose
+  def rotate_left
+    @pose = pose.rotate_left
   end
 end

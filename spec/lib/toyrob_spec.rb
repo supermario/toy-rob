@@ -8,23 +8,25 @@ describe ToyRob do
     end
   end
 
-  describe '#turn_right' do
+  describe '#rotate_right' do
     it 'turns toy-rob to the right' do
-      pose = Pose.new(0, 0, Pose::NORTH)
+      pose = stub(:pose)
       toyrob = ToyRob.new(pose)
-      toyrob.turn_right
 
-      expect(toyrob.pose).to eq(Pose.new(0, 0, Pose::EAST))
+      expect(toyrob.pose).to receive(:rotate_right)
+
+      toyrob.rotate_right
     end
   end
 
-  describe '#turn_left' do
+  describe '#rotate_left' do
     it 'turns toy-rob to the left' do
-      pose = Pose.new(0, 0, Pose::NORTH)
+      pose = stub(:pose)
       toyrob = ToyRob.new(pose)
-      toyrob.turn_left
 
-      expect(toyrob.pose).to eq(Pose.new(0, 0, Pose::WEST))
+      expect(toyrob.pose).to receive(:rotate_left)
+
+      toyrob.rotate_left
     end
   end
 end
