@@ -17,3 +17,24 @@ Feature: Movement
     When toy-rob turns left
     Then he should be at 0,0 facing west
 
+  Scenario: Going for a walk
+    Given a board of width 5 and height 5
+    And a toy-rob at coords 1,2 facing east
+    When toy-rob moves
+    And toy-rob moves
+    And toy-rob turns left
+    And toy-rob moves
+    Then he should be at 3,3 facing north
+
+  Scenario: Doing a loop
+    Given a board of width 5 and height 5
+    And a toy-rob at coords 0,0 facing north
+    When toy-rob moves
+    And toy-rob turns right
+    And toy-rob moves
+    And toy-rob turns right
+    And toy-rob moves
+    And toy-rob turns right
+    And toy-rob moves
+    And toy-rob turns right
+    Then he should be at 0,0 facing north

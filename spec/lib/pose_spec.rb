@@ -17,10 +17,31 @@ describe Pose do
 
   describe '#next' do
     context 'when facing north' do
-      it 'increments the Y co-ordinate by 1' do
-        pose = Pose.new(1, 2, Pose::NORTH)
+      it 'increments the y co-ordinate by 1' do
+        pose = Pose.new(1, 1, Pose::NORTH)
 
-        expect(pose.next).to eq(Pose.new(1, 3, Pose::NORTH))
+        expect(pose.next).to eq(Pose.new(1, 2, Pose::NORTH))
+      end
+    end
+    context 'when facing east' do
+      it 'increments the x co-ordinate by 1' do
+        pose = Pose.new(1, 1, Pose::EAST)
+
+        expect(pose.next).to eq(Pose.new(2, 1, Pose::EAST))
+      end
+    end
+    context 'when facing south' do
+      it 'decrements the y co-ordinate by 1' do
+        pose = Pose.new(1, 1, Pose::SOUTH)
+
+        expect(pose.next).to eq(Pose.new(1, 0, Pose::SOUTH))
+      end
+    end
+    context 'when facing west' do
+      it 'decrements the x co-ordinate by 1' do
+        pose = Pose.new(1, 1, Pose::WEST)
+
+        expect(pose.next).to eq(Pose.new(0, 1, Pose::WEST))
       end
     end
   end
