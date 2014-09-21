@@ -38,3 +38,14 @@ Feature: Movement
     And toy-rob moves
     And toy-rob turns right
     Then he should be at 0,0 facing north
+
+  Scenario: Invalid placement
+    Given a board of width 5 and height 5
+    And a toy-rob at coords 6,6 facing north
+    Then toy-rob should not be on the board
+
+  Scenario: Unplaced
+    Given a board of width 5 and height 5
+    And a toy-rob outside of the space-time continuum
+    Then toy-rob should not be on the board
+

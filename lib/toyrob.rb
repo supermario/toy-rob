@@ -1,7 +1,7 @@
 class ToyRob
-  attr_reader :pose
+  attr_reader :pose, :board
 
-  def initialize(pose)
+  def initialize(pose = nil)
     @pose = pose
   end
 
@@ -15,5 +15,11 @@ class ToyRob
 
   def rotate_left
     @pose = pose.rotate_left
+  end
+
+  def place(board)
+  end
+
+  def placed?
   end
 end
