@@ -39,6 +39,37 @@ Feature: Movement
     And toy-rob turns right
     Then he should be at 0,0 facing north
 
+  Scenario: Suicide mission one
+    Given a board of width 5 and height 5
+    And a toy-rob at coords 0,0 facing north
+    When toy-rob moves
+    And toy-rob moves
+    And toy-rob moves
+    And toy-rob moves
+    And toy-rob moves
+    And toy-rob moves
+    And toy-rob moves
+    And toy-rob moves
+    And toy-rob moves
+    Then he should be at 0,4 facing north
+
+  Scenario: Suicide mission two
+    Given a board of width 5 and height 5
+    And a toy-rob at coords 4,4 facing north
+    When toy-rob moves
+    And toy-rob moves
+    And toy-rob moves
+    And toy-rob moves
+    And toy-rob moves
+    And toy-rob moves
+    And toy-rob turns right
+    And toy-rob moves
+    And toy-rob moves
+    And toy-rob moves
+    And toy-rob moves
+    And toy-rob moves
+    Then he should be at 4,4 facing east
+
   Scenario: Invalid placement
     Given a board of width 5 and height 5
     And a toy-rob at coords 6,6 facing north

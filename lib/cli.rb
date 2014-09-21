@@ -25,7 +25,6 @@ class CLI
     rescue Interrupt
       # Catch ctrl+c exiting from shell
       @terminated = true
-
   end
 
   def process(raw_command)

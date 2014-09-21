@@ -6,7 +6,7 @@ class ToyRob
   end
 
   def move
-    @pose = pose.next
+    @pose = pose.next if valid?(pose.next)
   end
 
   def rotate_right
@@ -18,7 +18,7 @@ class ToyRob
   end
 
   def position(pose)
-    @pose = pose
+    @pose = pose if valid?(pose.next)
   end
 
   def place(board)
@@ -29,7 +29,11 @@ class ToyRob
   def placed?
     return false if board.nil?
     return false if pose.direction.nil?
-    board.contains(pose.x, pose.y)
+    board.contains(pose)
+  end
+
+  def valid?(pose)
+    board && board.contains(pose)
   end
 
   def to_s
