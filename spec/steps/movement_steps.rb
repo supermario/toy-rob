@@ -12,6 +12,10 @@ step 'toy-rob moves' do
 end
 
 step 'toy-rob turns right' do
+  @toyrob.turn_right
+end
+
+step 'toy-rob turns left' do
   @toyrob.turn_left
 end
 
