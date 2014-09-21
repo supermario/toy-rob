@@ -2,7 +2,7 @@ class ToyRob
   attr_reader :pose, :board
 
   def initialize(pose = nil)
-    @pose = pose
+    @pose = pose || Pose.new
   end
 
   def move
@@ -18,8 +18,11 @@ class ToyRob
   end
 
   def place(board)
+    @board = board
   end
 
   def placed?
+    return false if board.nil?
+    return board.contains(pose.x, pose.y)
   end
 end

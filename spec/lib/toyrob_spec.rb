@@ -32,8 +32,8 @@ describe ToyRob do
 
   describe '#place' do
     it 'gives toy-rob a board' do
-      board = Board.new(5, 5)
       toyrob = ToyRob.new(Pose.new(1, 1, Pose::NORTH))
+      board = Board.new(5, 5)
       toyrob.place(board)
 
       expect(toyrob.board).to eq(board)
@@ -52,6 +52,20 @@ describe ToyRob do
       toyrob = ToyRob.new(Pose.new(6, 6, Pose::NORTH))
       board = Board.new(5, 5)
       toyrob.place(board)
+
+      expect(toyrob.placed?).to be(false)
+    end
+
+    it 'is false when toy-rob has no pose' do
+      toyrob = ToyRob.new()
+      board = Board.new(5, 5)
+      toyrob.place(board)
+
+      expect(toyrob.placed?).to be(false)
+    end
+
+    it 'is false when toy-rob has no board' do
+      toyrob = ToyRob.new(Pose.new(1, 1, Pose::NORTH))
 
       expect(toyrob.placed?).to be(false)
     end
