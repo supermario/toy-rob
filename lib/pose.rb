@@ -8,10 +8,6 @@ class Pose < Struct.new(:x, :y, :direction)
     case direction
     when NORTH
       Pose.new(x, y + 1, direction)
-    end
-    case direction
-    when NORTH
-      Pose.new(x, y + 1, direction)
     when WEST
       Pose.new(x - 1, y, direction)
     when SOUTH
