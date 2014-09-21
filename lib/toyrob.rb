@@ -17,6 +17,10 @@ class ToyRob
     @pose = pose.rotate_left
   end
 
+  def position(pose)
+    @pose = pose
+  end
+
   def place(board)
     @board = board
     @pose = Pose.new unless placed?
@@ -24,6 +28,12 @@ class ToyRob
 
   def placed?
     return false if board.nil?
+    return false if pose.direction.nil?
     board.contains(pose.x, pose.y)
+  end
+
+  def to_s
+    return 'unplaced' unless placed?
+    "#{pose.x},#{pose.y},#{pose.direction.upcase}"
   end
 end
