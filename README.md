@@ -1,19 +1,17 @@
 
-<img style="float: right; margin-left: 20px;" src="http://mario.net.au/images/toyrob.jpg" width="220">
+<img align="right" src="http://mario.net.au/images/toyrob.jpg" width="120">
 
 [![Build Status](https://travis-ci.org/supermario/toy-rob.svg)](https://travis-ci.org/supermario/toy-rob)
 [![Code Climate](https://codeclimate.com/github/supermario/toy-rob/badges/gpa.svg)](https://codeclimate.com/github/supermario/toy-rob)
 [![Dependency Status](https://gemnasium.com/supermario/toy-rob.svg)](https://gemnasium.com/supermario/toy-rob)
 
 
-Toy R.O.B
-=========
+# Toy R.O.B
 
 R.O.B. (short for Robotic Operating Buddy) is an accessory for the Nintendo Entertainment System who made appearances in a few Mario games as a character.
 
 Toy R.O.B. is a fun simulator version of R.O.B. which can be commanded to move around a board (an implementation of the 'Toy Robot' programming challenge).
 
-<div style='clear:both;'></div>
 
 ## Usage
 
