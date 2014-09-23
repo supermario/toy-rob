@@ -61,6 +61,13 @@ describe CLI do
 
       expect(cli.toyrob.pose).to eq(Pose.new(0, 0, Pose::NORTH))
     end
+    it 'should ignore invalid inputs' do
+      @stdin << 'PLACE'
+      @stdin << 'PLACE test'
+      @stdin << 'PLACE ,,,'
+      cli = CLI.new(@stdout, @stdin)
+      cli.run
+    end
   end
 
   describe '#command_move' do

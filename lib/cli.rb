@@ -39,6 +39,7 @@ class CLI
 
   def command_place(params)
     x, y, direction = params.split(',')
+    return if direction.nil?
     toyrob.position(Pose.new(x.to_i, y.to_i, direction.downcase))
   end
 
