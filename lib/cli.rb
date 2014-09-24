@@ -34,9 +34,6 @@ class CLI
     send(command, raw_command.split.last)
   end
 
-  def command_ignore(_)
-  end
-
   def command_place(params)
     x, y, direction = params.split(',')
     return if direction.nil?
@@ -57,5 +54,8 @@ class CLI
 
   def command_report(_)
     stdout << toyrob
+  end
+
+  def command_ignore(_)
   end
 end

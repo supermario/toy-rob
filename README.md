@@ -26,6 +26,10 @@ Run commands from a file:
     $ ./bin/simulator < commands.txt
 
 
+## Assumptions / Features
+
+- Multiple valid PLACE commands will allow for Toy R.O.B. to demonstrate his powers of teleportation
+
 ## Testing
 
 Toy R.O.B. uses [RSpec](http://rspec.info/) and [Turnip](https://github.com/jnicklas/turnip) for unit/acceptance testing, [SimpleCov](https://github.com/colszowka/simplecov) for code test coverage, [Rubocop](https://github.com/bbatsov/rubocop) and [Code Climate](https://codeclimate.com/) for quality metrics.
@@ -53,12 +57,15 @@ The original specification for the 'Toy Robot' challenge.
 that would result in the robot falling from the table must be prevented, however further valid movement commands must still
 be allowed.
 
-*Create an application that can read in commands of the following form*
-`PLACE X,Y,F`
-`MOVE`
-`LEFT`
-`RIGHT`
-`REPORT`
+*Create an application that can read in commands of the following form:*
+
+```
+PLACE X,Y,F
+MOVE
+LEFT
+RIGHT
+REPORT
+```
 
 - `PLACE` will put the toy robot on the table in position `X,Y` and facing `NORTH`, `SOUTH`, `EAST` or `WEST`.
 - The origin (`0,0`) can be considered to be the `SOUTH WEST` most corner.
@@ -77,20 +84,26 @@ Any move that would cause the robot to fall must be ignored.
 
 Example Input and Output:
 
-`PLACE 0,0,NORTH`
-`MOVE`
-`REPORT`
-Output: `0,1,NORTH`
+```
+PLACE 0,0,NORTH
+MOVE
+REPORT
+ => 0,1,NORTH
+```
 
-`PLACE 0,0,NORTH`
-`LEFT`
-`REPORT`
-Output: `0,0,WEST`
+```
+PLACE 0,0,NORTH
+LEFT
+REPORT
+ => 0,0,WEST
+```
 
-`PLACE 1,2,EAST`
-`MOVE`
-`MOVE`
-`LEFT`
-`MOVE`
-`REPORT`
-Output: `3,3,NORTH`
+```
+PLACE 1,2,EAST
+MOVE
+MOVE
+LEFT
+MOVE
+REPORT
+ => 3,3,NORTH
+```
