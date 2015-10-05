@@ -1,121 +1,122 @@
 describe CLI do
-  before(:each) do
-    @stdout = StringIO.new
-    @stdin = StdinFaker.new
-  end
+  let(:stdout)  { StringIO.new }
+  let(:stdin)   { StdinFaker.new }
+  subject(:cli) { CLI.new(stdout, stdin) }
+
   describe '#run' do
 
-    it 'takes input from stdin' do
-      @stdin << 'HELLO'
-      @stdin << 'WORLD'
-      cli = CLI.new(@stdout, @stdin)
+    let(:input) { ['HELLO', 'WORLD'] }
 
-      expect { cli.run }.to change { @stdin.inputs }.to([])
+    it 'takes input from stdin' do
+      stdin << 'HELLO'
+      stdin << 'WORLD'
+
+      expect { subject.run }.to change { stdin.inputs }.to([])
     end
     it 'writes output to stdout' do
-      @stdin << 'REPORT'
-      cli = CLI.new(@stdout, @stdin)
-      cli.run
+      stdin << 'REPORT'
+      subject.run
 
-      expect(@stdout.string).not_to be_empty
+      expect(stdout.string).not_to be_empty
     end
 
-    it 'should handle an interrupt' do
-      @stdin = StdinCrasher.new
-      @stdin << 'TESTING'
-      cli = CLI.new(@stdout, @stdin)
+    context 'with crashing stdin' do
+      let(:stdin) { StdinCrasher.new }
 
-      expect { cli.run }.to change { cli.terminated }.to(true)
+      it 'should handle an interrupt' do
+        expect { subject.run }.to change { subject.terminated }.to(true)
+      end
     end
   end
+
   describe '#process' do
     it 'triggers a matching command' do
-      @stdin << 'REPORT'
-      cli = CLI.new(@stdout, @stdin)
-      expect(cli).to receive(:command_report)
+      stdin << 'REPORT'
 
-      cli.run
+      expect(subject).to receive(:command_report)
+
+      subject.run
     end
 
     it 'triggers ignore for invalid commands' do
-      @stdin << 'INVALIDCOMMAND'
-      cli = CLI.new(@stdout, @stdin)
-      expect(cli).to receive(:command_ignore)
+      stdin << 'INVALIDCOMMAND'
 
-      cli.run
+      expect(subject).to receive(:command_ignore)
+
+      subject.run
     end
   end
 
   describe '#command_place' do
     it 'should pose toyrob' do
-      @stdin << 'PLACE 0,0,NORTH'
-      cli = CLI.new(@stdout, @stdin)
-      expect(cli.toyrob).to receive(:position)
+      stdin << 'PLACE 0,0,NORTH'
 
-      cli.run
+      expect(subject.toyrob).to receive(:position)
+
+      subject.run
     end
     it 'should position toyrob correctly' do
-      @stdin << 'PLACE 0,0,NORTH'
-      cli = CLI.new(@stdout, @stdin)
-      cli.run
+      stdin << 'PLACE 0,0,NORTH'
 
-      expect(cli.toyrob.pose).to eq(Pose.new(0, 0, Pose::NORTH))
+      subject.run
+
+      expect(subject.toyrob.pose).to eq(Pose.new(0, 0, Pose::NORTH))
     end
     it 'should ignore invalid inputs' do
-      @stdin << 'PLACE'
-      @stdin << 'PLACE test'
-      @stdin << 'PLACE ,,,'
-      cli = CLI.new(@stdout, @stdin)
-      cli.run
+      stdin << 'PLACE'
+      stdin << 'PLACE test'
+      stdin << 'PLACE ,,,'
+
+      subject.run
     end
   end
 
   describe '#command_move' do
     it 'should move toyrob' do
-      @stdin << 'MOVE'
-      cli = CLI.new(@stdout, @stdin)
-      expect(cli.toyrob).to receive(:move)
+      stdin << 'MOVE'
 
-      cli.run
+      expect(subject.toyrob).to receive(:move)
+
+      subject.run
     end
   end
 
   describe '#command_right' do
     it 'should turn toyrob right' do
-      @stdin << 'RIGHT'
-      cli = CLI.new(@stdout, @stdin)
-      expect(cli.toyrob).to receive(:rotate_right)
+      stdin << 'RIGHT'
 
-      cli.run
+      expect(subject.toyrob).to receive(:rotate_right)
+
+      subject.run
     end
   end
 
   describe '#command_left' do
     it 'should turn toyrob left' do
-      @stdin << 'LEFT'
-      cli = CLI.new(@stdout, @stdin)
-      expect(cli.toyrob).to receive(:rotate_left)
+      stdin << 'LEFT'
 
-      cli.run
+      expect(subject.toyrob).to receive(:rotate_left)
+
+      subject.run
     end
   end
 
   describe '#command_report' do
     it 'should print toyrob' do
-      @stdin << 'REPORT'
-      cli = CLI.new(@stdout, @stdin)
-      expect(cli.toyrob).to receive(:to_s)
+      stdin << 'REPORT'
 
-      cli.run
+      expect(subject.toyrob).to receive(:to_s)
+
+      subject.run
     end
 
     it 'should print the correct location' do
-      @stdin << 'PLACE 1,2,EAST'
-      @stdin << 'REPORT'
-      cli = CLI.new(@stdout, @stdin)
-      cli.run
+      stdin << 'PLACE 1,2,EAST'
+      stdin << 'REPORT'
 
-      expect(@stdout.string).to eq('1,2,EAST')
+      subject.run
+
+      expect(stdout.string).to eq('1,2,EAST')
     end
   end
 end
