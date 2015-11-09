@@ -107,5 +107,4 @@ describe Pose do
       end
     end
   end
-
 end

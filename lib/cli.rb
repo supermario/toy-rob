@@ -22,9 +22,9 @@ class CLI
     while line = stdin.gets
       process(line)
     end
-    rescue Interrupt
-      # Catch ctrl+c exiting from shell
-      @terminated = true
+  rescue Interrupt
+    # Catch ctrl+c exiting from shell
+    @terminated = true
   end
 
   def process(raw_command)

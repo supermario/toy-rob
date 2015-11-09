@@ -4,8 +4,7 @@ describe CLI do
   subject(:cli) { CLI.new(stdout, stdin) }
 
   describe '#run' do
-
-    let(:input) { ['HELLO', 'WORLD'] }
+    let(:input) { %w(HELLO WORLD) }
 
     it 'takes input from stdin' do
       stdin << 'HELLO'
